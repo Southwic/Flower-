@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Turtle Art</title>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.12.4/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.12.4/brython_stdlib.min.js"></script>
+    
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* This container forces the turtle canvas to show up beautifully */
+        #turtle-div {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body onload="brython()">
+
+    <div id="turtle-div"></div>
+
+    <script type="python">
+import colorsys 
+import turtle
+
+# Tell turtle to draw inside our HTML div
+turtle.set_panel("turtle-div")
+turtle.bgcolor("black")
+turtle.speed(0) 
+turtle.tracer(3)
+
+h = 0
+for i in range(15):
+    for j in range(18):
+        c = colorsys.hsv_to_rgb(h, 1, 1)
+        turtle.color(c)
+        h += 0.005
+        
+        turtle.rt(90)
+        turtle.circle(150 - j * 6, 90)
+        turtle.lt(90)
+        turtle.circle(150 - j * 6, 90)
+        turtle.rt(180)
+    
+    turtle.circle(40, 24)
+
+turtle.done()
+    </script>
+
+</body>
+</html>
